@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Bootstrap Theme The Band</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="libs/jquery.min.js"></script>
+  <script src="libs/bootstrap/bootstrap.min.js"></script>
+  <script type="text/javascript" src="libs/socket.io.js"></script>
+
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a href="#myPage">By Ouandi Hoffer</a>
+      </div>
+    </div>
+  </nav>
+
+ 
+  <!-- Container (The Band Section) -->
+  <div id="band" class="container text-center">
+    <h3>CHAT APP Client v1.0.0</h3>
+    <p><em>Welcome</em></p>
+    <button id="init-button">Click to connect to your server</button> <br/>
+    <br>
+    <div class="row">
+      <div class="col-sm-4">
+        <p class="text-center"><strong>Status</strong></p>
+        <p id='server-status'> not connected </p>
+      </div>
+      <div class="col-sm-4">
+        <p class="text-center"><strong>IP</strong></p>
+        <p id='server-ip'> 0.0.0.0 </p>
+      </div>
+      <div class="col-sm-4">
+        <p class="text-center"><strong>Time</strong></p>
+        <p id='server-time'> 00:00 </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container (TOUR Section) -->
+  <div id="tour" class="bg-1">
+    <div class="container">
+      <h3 class="text-center">Post your messages</h3>
+      <p class="text-center"> Send and receive messages from your server <br> Here !</p>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <input id="message" type="text" class="container-fluid">
+          <br />
+          <button id="send-button">Send</button>
+        </li> 
+        <br/>
+        Messages History : 
+        <li class="list-group-item">
+          
+          <ul class="list-group" id="messages"></ul>
+
+        </li> 
+      </ul>
+      
+    </div>
+  </div>
+
+
+  <script language="javascript">
+
+      var socket;
+
+      
+
+      $(document).ready(function()
+      {
+        var ip_serveur,
+            ip = document.getElementById('server-ip'),
+            el = document.getElementById('server-time');
+
+       
+
+        function connection(){
+          ip_serveur = prompt("IP du Serveur : ");
+          ip.innerHTML = ip_serveur;
+
+          socket = io.connect(ip_serveur);
+          socket.on('message', function (data) {
+
+            var content = $('#messages').html()+ '<li class="list-group-item">' + data + '</li>';
+
+            $('#messages').html(content); 
+            $('#server-status').html("Connected"); 
+          });
+
+
+          
+          socket.on('time', function(timeString) {
+                el.innerHTML = 'Server time: ' + timeString;
+          });
+        }
+
+        $('#init-button').bind('click', connection); 
+        
+        
+        $('#send-button').bind('click', function(){
+          postMessage();
+        }); 
+
+        $('#message').bind('keypress', function(e) {
+
+          var code = (e.keyCode ? e.keyCode : e.which); 
+
+           if(code == 13) { //Enter keycode 
+
+             postMessage(); 
+
+           } 
+
+        }); 
+
+
+
+      });
+
+      
+
+      function postMessage()
+      {
+
+        if (socket) {
+
+          socket.emit('message', $('#message').val());
+
+          $('#message').val('');
+
+        }
+
+      }
+
+
+
+    </script>
+
+</body>
+
+<!-- Mirrored from www.w3schools.com/bootstrap/tryit.asp?filename=trybs_theme_band_complete&stacked=h by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 22 Nov 2017 22:53:01 GMT -->
+</html>
