@@ -14,12 +14,11 @@ const server = express()
 const io = socketIO(server);
 
 io.on('connection', (client) => {
-  console.log('Client connected');
-  var userName;
+  	var userName;
 
 	console.log("user connected!");
 
-	client.emit('message', 'please insert user name');
+	client.emit('message', 'Server: please insert user name');
 
     
 
@@ -31,7 +30,7 @@ io.on('connection', (client) => {
 
 			console.log(userName + ' is connected :)');
 
-			client.emit('message', 'Welcome ' + userName);
+			client.emit('message', 'Server: Welcome ' + userName);
 
 			client.broadcast.emit('message', userName + ' is connected');
 
@@ -39,7 +38,7 @@ io.on('connection', (client) => {
 
 		else {
 
-			client.emit('message', 'me: ' + message);
+			client.emit('message', 'Me: ' + message);
 
 			client.broadcast.emit('message', userName + ' says: ' + message);
 
