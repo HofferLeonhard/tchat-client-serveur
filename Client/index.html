@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Bootstrap Theme The Band</title>
+  <title>Node Socket.IO Client example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="libs/bootstrap/bootstrap.min.css">
@@ -23,7 +23,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
         </button>
-        <a href="#myPage">By Ouandi Hoffer</a>
+        <a href="https://web.facebook.com/hofferfleury.mbiandja">By Ouandi Hoffer</a>
       </div>
     </div>
   </nav>
@@ -90,7 +90,7 @@
        
 
         function connection(){
-          ip_serveur = prompt("IP du Serveur : ");
+          ip_serveur = prompt("Server Address (Adresse du Serveur) : ");
           ip.innerHTML = ip_serveur;
 
           socket = io.connect(ip_serveur);

@@ -8,7 +8,7 @@ var PORT = process.env.PORT || 3000;
 var INDEX = path.join(__dirname, 'index.html');
 
 var server = express().use(function(req, res){res.sendFile(INDEX)})
-  .listen(PORT, function(){console.log('Listening on '+PORT)});
+  .listen(PORT, function(){console.log('Listening on '+PORT+", waiting for connections. For example, Enter : http://127.0.0.1:"+PORT+" on client, for connection to me")});
 
 var io = socketIO(server);
 
