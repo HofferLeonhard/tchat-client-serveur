@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node server.js"
   },
-  "keywords": [],
+  "keywords": [node, tchat, socket, socket.io, express],
   "author": "",
   "license": "ISC",
   "dependencies": {
