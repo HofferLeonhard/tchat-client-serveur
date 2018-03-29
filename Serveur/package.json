@@ -1,6 +1,6 @@
 {
-  "name": "websockets-socket.io",
-  "version": "1.0.0",
+  "name": "tchat-client-serveur",
+  "version": "0.0.2",
   "engines": {
     "node": "6.2.0"
   },

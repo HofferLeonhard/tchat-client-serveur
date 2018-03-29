@@ -1,7 +1,7 @@
 
 # tchat-client-serveur
-=======
-# Node.js Tchat App Example
+
+### Node.js Tchat App Example
 
 This example accompanies the
 [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
